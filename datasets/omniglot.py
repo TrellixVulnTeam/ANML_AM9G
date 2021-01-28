@@ -1,3 +1,6 @@
+# Pytorch with 
+# Try for CIFAR: https://github.com/pytorch/vision/blob/master/torchvision/datasets/cifar.py
+
 from os.path import join
 from PIL import Image
 
@@ -28,7 +31,12 @@ class Omniglot(Dataset):
         "images_evaluation": "6b91aef0f799c5bb55b94e3f2daec811",
     }
 
+    #__init__ is one of the reserved methods in Python. 
+    # In object oriented programming, it is known as a constructor.
     def __init__(
+
+        #The self parameter is a reference to the current instance of the class,
+        # and is used to access variables that belongs to the class.
         self,
         root,
         background=True,
@@ -42,6 +50,9 @@ class Omniglot(Dataset):
         self.background = background
         self.memo = {}
 
+        # If true, downloads the dataset zip files from the internet and
+        # puts it in root directory. If the zip files are already downloaded, they are not
+        # downloaded again.
         if download:
             self.download()
 

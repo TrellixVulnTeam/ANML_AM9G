@@ -12,21 +12,32 @@ from datasets.OmniSampler import OmniSampler
 from utils import divide_chunks
 
 
+#used in line 43 of this file
 def lobotomize(layer, class_num):
     kaiming_normal_(layer.weight[class_num].unsqueeze(0))
 
 
+#parameters given in train() function are defined in train_omni.py
+# lr - learning rate, its - iterations 
 def train(rln, nm, mask, inner_lr=1e-1, outer_lr=1e-3, its=30000, device="cuda"):
 
+
+    # Log function - utlis.py (can't understand)
     log = Log(f"{rln}_{nm}_{mask}_ANML")
+
+    #OmniSampler - OmniSampler.py
     omni_sampler = OmniSampler(root="../data/omni")
 
+    #ANML - model.py
     anml = ANML(rln, nm, mask).to(device)
+
 
     # inner optimizer used during the learning phase
     inner_opt = SGD(
         list(anml.rln.parameters()) + list(anml.fc.parameters()), lr=inner_lr
     )
+
+    
     # outer optimizer used during the remembering phase, the learning is propagate through the
     # inner loop optimizations computing second order gradients
     outer_opt = Adam(anml.parameters(), lr=outer_lr)

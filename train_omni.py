@@ -11,8 +11,13 @@ from torch.cuda import is_available
 #importing the train function in anml.py file
 from anml import train
 
+#If the python interpreter is running that module (the source file) as the main program, 
+# it sets the special __name__ variable to have a value “__main__”. If this file is being
+#  imported from another module, __name__ will be set to the module’s name. Module’s name
+#  is available as value to __name__ global variable. 
 if __name__ == "__main__":
-    # Training settings
+
+    # Training settings parameters
     parser = argparse.ArgumentParser(description="ANML training")
     parser.add_argument(
         "--rln", type=int, default=256, help="number of channels to use in the RLN"

@@ -14,7 +14,7 @@ def divide_chunks(l, n):
     for i in range(0, len(l), n):
         yield l[i : i + n]
 
-
+# CANNOT UNDERSTAND LOG CLASS AND ./trained_anmls
 class Log:
     def __init__(self, name, print_freq=10, save_freq=1000):
         self.start = -1
