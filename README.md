@@ -56,3 +56,4 @@ python eval_omni.py --model trained_anmls/256_112_2304_ANML-29999.pth --classes 
 
 During evaluation the model is quite sensitive to learning rates used, the data shown in the above table has been gathered sweeping several learning rates over multiple repeats.
 "# ANML_Sakshi" 
+"# ANML" 
