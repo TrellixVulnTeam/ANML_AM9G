@@ -8,7 +8,8 @@ from pathlib import Path
 
 from model import ANML
 from utils import Log
-from datasets.OmniSampler import OmniSampler
+#from datasets.OmniSampler import OmniSampler
+from CIFARdataset.CifarSampler import CifarSampler
 from utils import divide_chunks
 
 
@@ -26,7 +27,8 @@ def train(rln, nm, mask, inner_lr=1e-1, outer_lr=1e-3, its=30000, device="cuda")
     log = Log(f"{rln}_{nm}_{mask}_ANML")
 
     #OmniSampler - OmniSampler.py
-    omni_sampler = OmniSampler(root="../data/omni")
+    #omni_sampler = OmniSampler(root="../data/omni")
+    cifar_sampler = CifarSampler(root="../data/cifar")
 
     #ANML - model.py
     anml = ANML(rln, nm, mask).to(device)
@@ -44,7 +46,9 @@ def train(rln, nm, mask, inner_lr=1e-1, outer_lr=1e-3, its=30000, device="cuda")
 
     for it in range(its):
 
-        train_data, train_class, (valid_ims, valid_labels) = omni_sampler.sample_train()
+        #train_data, train_class, (valid_ims, valid_labels) = omni_sampler.sample_train()
+        train_data, train_class, (valid_ims, valid_labels) = cifar_sampler.sample_train()
+
 
         # To facilitate the propagation of gradients through the model we prevent memorization of
         # training examples by randomizi the weights in the last fully connected layer corresponding

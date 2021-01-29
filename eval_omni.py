@@ -1,6 +1,7 @@
 import torch
 
-from datasets.OmniSampler import OmniSampler
+#from datasets.OmniSampler import OmniSampler
+from CIFARdataset.CifarSampler import CifarSampler
 from anml import test_train
 
 from tqdm import trange
@@ -21,11 +22,13 @@ def check_path(path):
 
 def repeats(runs, path, classes, train_examples, lr):
 
-    omni_sampler = OmniSampler(root="../data/omni")
+    #omni_sampler = OmniSampler(root="../data/omni")
+    cifar_sampler = CifarSampler(root="../data/cifar")
 
     run = lambda: test_train(
         path,
-        sampler=omni_sampler,
+        #sampler=omni_sampler,
+        sampler=cifar_sampler
         num_classes=classes,
         train_examples=train_examples,
         lr=lr,

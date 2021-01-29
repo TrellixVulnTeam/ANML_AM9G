@@ -1,3 +1,5 @@
+# No changes req in this file  afaik for cifar
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F

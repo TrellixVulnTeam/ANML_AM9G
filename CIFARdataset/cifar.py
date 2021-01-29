@@ -14,7 +14,7 @@ from os.path import join
 from PIL import Image
 
 from torch.utils.data import Dataset
-from .utils import download_and_extract_archive, check_integrity, list_dir, list_files
+from .utils import download_and_extract_archive, check_integrity
 
 
 class CIFAR10(Dataset):
@@ -67,16 +67,16 @@ class CIFAR10(Dataset):
         self.root = join(root, self.folder)
         self.transform = transform
         self.target_transform = target_transform
-        #self.background = background (omni absent)
-        #self.train = train (cifar present)
+        self.background = background #(omni absent)
+        self.train = train #(cifar present)
         self.memo = {}
 
-        '''
+        
         super(CIFAR10, self).__init__(root, transform=transform,
                                       target_transform=target_transform)
 
         self.train = train  # training set or test set 
-        '''
+        
 
         if download:
             self.download()
